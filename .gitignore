@@ -1,0 +1,27 @@
+# Окружение и зависимости
+.venv/
+*.pyc
+__pycache__/
+.flake8
+
+
+# Конфиденциальные данные
+.env
+.auth/
+
+# Логи и отчеты Playwright
+test-results/
+allure_results/*
+tracing/
+playwright-report/
+blob-report/
+video/
+screenshots/
+trace.zip
+
+# Инструменты линтинга и IDE
+.pytest_cache/
+.pylintrc_cache/
+.mypy_cache/
+.idea/
+.vscode/

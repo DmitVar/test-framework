@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace      # Удаляет лишние пробелы в конце строк
+      - id: end-of-file-fixer        # Добавляет пустую строку в конец файла
+      - id: check-yaml               # Проверяет синтаксис YAML-файлов
+
+  - repo: https://github.com
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black"] # Чтобы не ругался на Black
+
+  - repo: https://github.com
+    rev: 23.10.1
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://github.com
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        args: ["--max-line-length=88", "--extend-ignore=E203"]

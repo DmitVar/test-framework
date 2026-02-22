@@ -1,0 +1,13 @@
+[flake8]
+# Совместимость с Black
+max-line-length = 88
+extend-ignore = E203, W503
+# Исключаем служебные папки
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    .auth,
+    .pytest_cache
+# Максимальная сложность функций (цикломатическая)
+max-complexity = 10

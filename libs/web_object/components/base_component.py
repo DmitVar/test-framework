@@ -3,17 +3,9 @@ from typing import Pattern
 from playwright.sync_api import Page, expect
 
 
-class BasePage:
-    base_url = "http://localhost:3000/"
-
+class BaseComponent:
     def __init__(self, page: Page):
         self.page = page
-
-    def go(self):
-        self.page.goto(self.base_url, wait_until="networkidle")
-
-    def reload(self):
-        self.page.reload(wait_until="domcontentloaded")
 
     def check_current_url(self, expected_url: Pattern[str]):
         expect(self.page).to_have_url(expected_url)

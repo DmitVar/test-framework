@@ -4,6 +4,7 @@ from allure_commons.types import Severity
 from faker import Faker
 from playwright.sync_api import Page
 
+from core.web_ui.pages.dashboard_page.dashboard_page import DashboardPage
 from core.web_ui.pages.registration_page.registration_page import RegistrationPage
 from tools.allure.allure_enum import AllureTags, AllureStory, AllureFeature, AllureEpics
 
@@ -33,5 +34,8 @@ class TestRegistrationPage:
             registration_page.wait_page_loaded()
             expected_url = "http://localhost:3000/dashboard"
             registration_page.check_current_url(expected_url)
+
+            dashboard_page = DashboardPage(registration_page.page)
+            dashboard_page.popup.check_popup_text("Регистрация успешна!")
         finally:
             delete_user.append(new_user_email)

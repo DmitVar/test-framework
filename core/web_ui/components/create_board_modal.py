@@ -10,7 +10,7 @@ from core.web_ui.elements.text_area import TextArea
 
 class CreateBoardModal(BaseComponent):
     def __init__(self, page: Page):
-        super().__init__()
+        super().__init__(page)
 
         self.title = Text(
             page,

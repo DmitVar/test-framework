@@ -2,7 +2,7 @@ import pytest
 
 from config import settings
 from core.api.clients.authentication.authentication_client import get_authentication_client
-from core.api.clients.authentication.authentication_schema import LoginRequestSchema, LoginResponseSchema
+from core.api.clients.authentication.authentication_schema import LoginRequestSchema
 
 
 @pytest.fixture()

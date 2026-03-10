@@ -8,10 +8,9 @@ from core.api.clients.event_hooks import curl_event_hook, log_request_event_hook
 from config import settings
 
 class AuthenticationUserSchemas(BaseModel):
-    username: EmailStr
+    email: EmailStr
     password: str
 
-@lru_cache(maxsize=None)
 def get_private_http_client(user: AuthenticationClient) -> Client:
     authenticated_client = get_authentication_client()
     login_request = LoginRequestSchema(email=user.email, password=user.password)
@@ -20,7 +19,7 @@ def get_private_http_client(user: AuthenticationClient) -> Client:
 
     return Client(
         timeout=settings.http_client.timeout,
-        base_url=settings.http_client.base_url,
+        base_url=f"{settings.http_client.url}",
         headers={"Authorization": f"Bearer {access_token}" },
         event_hooks={"request": [curl_event_hook, log_request_event_hook], "response": [log_response_event_hook, ]}
     )

@@ -1,6 +1,6 @@
 from httpx import Client
 from pydantic import BaseModel, EmailStr
-from functools import lru_cache
+
 
 from core.api.clients.authentication.authentication_client import AuthenticationClient, get_authentication_client
 from core.api.clients.authentication.authentication_schema import LoginRequestSchema

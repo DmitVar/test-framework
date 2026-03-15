@@ -10,9 +10,8 @@ class ValidationErrorSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     type: str
-    input: Any
     message: str = Field(alias="msg")
-    location: str = Field(alias="loc")
+    location: list[str | int] = Field(alias="loc")
 
 class ValidationErrorResponseSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)

@@ -71,3 +71,5 @@ class DashboardPage(BasePage):
     def get_board_url(self, board: Locator) -> str:
         href = board.locator("a").get_attribute("href")
         return href
+    def go_to_boards_page(self):
+        self.sidebar.click_boards_link()

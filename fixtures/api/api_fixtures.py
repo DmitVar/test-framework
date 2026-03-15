@@ -22,3 +22,18 @@ def delete_user():
             return
 
     print(f"User {user['id']} not found.")
+
+@pytest.fixture()
+def delete_board():
+    boards_title = []
+    yield boards_title
+    request = LoginRequestSchema(email=settings.test_user.email, password=settings.test_user.password)
+    client = get_authentication_client()
+    response = client.login(request=request)
+    response_data = response.model_dump()
+    headers = {"Authorization": f"Bearer {response_data['access_token']}"}
+    response = client.get(url=f"{settings.http_client.url}boards/", headers=headers)
+    boards = response.json()
+    for board in boards:
+        if board["title"] in boards_title:
+            client.delete(url=f"{settings.http_client.url}boards/{board['id']}", headers=headers)

@@ -1,5 +1,5 @@
 import allure
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Locator
 from ui_coverage_tool import ActionType, SelectorType
 
 from tools.logger import get_logger
@@ -9,19 +9,28 @@ loger = get_logger("BASE_ELEMENT")
 
 
 class BaseElement:
-    def __init__(self, page: Page, locator: str, name: str):
+    def __init__(self, page: Page, locator: str, name: str, base_locator: Locator | None = None):
         self.locator = locator
         self.name = name
         self.page = page
+        self.base_locator = base_locator
 
     @property
     def type_of(self) -> str:
         return "base element"
 
+    @staticmethod
+    def get_data_qa(value: str) -> str:
+        return f"[data-qa='{value}']"
+
     def get_locator(self, nth: int = 0, **kwargs):
+        if self.base_locator:
+            base = self.base_locator
+        else:
+            base = self.page
         locator = self.locator.format(**kwargs)
         with allure.step(f"Get locator: {self.locator} of element with name: {self.name} at index {nth}"):
-            return self.page.locator(locator).nth(nth)
+            return base.locator(locator).nth(nth)
 
     def get_raw_locator(self, nth: int = 0, **kwargs):
         return f"{self.locator.format(**kwargs)}[{nth}]"

@@ -34,6 +34,7 @@ def ensure_user_logged_in(user: User, playwright: Playwright) -> Path:
         if storage_path.stat().st_size == 0:
             should_login = True
         else:
+            st_t = storage_path.stat().st_mtime
             file_age = time() - storage_path.stat().st_mtime
             should_login = file_age > settings.max_browser_state_file_age
             if not should_login:

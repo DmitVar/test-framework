@@ -1,8 +1,7 @@
 from playwright.sync_api import Page
 
 from core.web_ui.components.sidebar import Sidebar
-from core.web_ui.components.table import Table
-from core.web_ui.components.table_headr import TableHeader
+from core.web_ui.components.table.table import Table
 from core.web_ui.elements.button import Button
 from core.web_ui.elements.checkbox import Checkbox
 from core.web_ui.elements.input import Input
@@ -19,7 +18,6 @@ class BoardsPage(BasePage):
             name="Title",
             locator="h1"
         )
-        self.header = TableHeader(page)
         self.sidebar = Sidebar(page)
 
         self.create_board_button = Button(
@@ -37,4 +35,12 @@ class BoardsPage(BasePage):
             name="Checkbox Only Public Boards",
             locator="[data-qa='boards-public-only-checkbox']"
         )
-        self.boards_table = Table(page)
+        self.boards_table = Table(page, page.locator("table"))
+
+    def search_board_by_title(self, board_title: str):
+        self.search_board_input.fill(board_title)
+        return self.boards_table.body.get_row_by_cell_text(board_title)
+
+    def get_cell(self, board_title: str):
+        row = self.search_board_by_title(board_title)
+        return self.boards_table.body.row.cell.cell(row)

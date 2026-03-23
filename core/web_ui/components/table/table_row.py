@@ -37,7 +37,7 @@ class TableRow(BaseComponent):
         return row_locator.nth(row_index)
 
     def check_visible_by_cells(self, cells: list[Cell]):
-        row = self.find_row_index(cells, self.table_body)
+        row = self.find_row_index(cells)
         for cell in cells:
             self.cell.check_visible(cell, row)
 

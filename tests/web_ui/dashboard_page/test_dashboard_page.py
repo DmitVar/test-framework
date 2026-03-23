@@ -32,7 +32,7 @@ class TestDashboardPage:
         dashboard_page.go()
         dashboard_page.check_user_name(user_name)
 
-    @allure.title("Test create new board")
+    @allure.title("Test create new board on dashboard page")
     @pytest.mark.parametrize("board_title, board_description, is_public",
                              [
                                  (faker.text(max_nb_chars=30), faker.text(max_nb_chars=100), True),
@@ -56,3 +56,4 @@ class TestDashboardPage:
         cell = boards_page.get_cell(board_title)
         cell.check_have_text(board_title, nth=1)
         delete_board.append(board_title)
+

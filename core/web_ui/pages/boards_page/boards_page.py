@@ -23,7 +23,7 @@ class BoardsPage(BasePage):
         self.create_board_button = Button(
             page,
             name="Create Board Button",
-            locator="[data-qa='boards-create-board-button]"
+            locator="[data-qa='boards-create-board-button']"
         )
         self.search_board_input = Input(
             page,

@@ -12,7 +12,7 @@ __pycache__/
 
 # Логи и отчеты Playwright
 test-results/
-allure_results/*
+allure-results/*
 tracing/
 playwright-report/
 blob-report/

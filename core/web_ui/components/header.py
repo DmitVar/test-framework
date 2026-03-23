@@ -27,7 +27,7 @@ class Header(BaseComponent):
         )
 
         self.header_user_info_button_user_name = Text(
-            page, name="User Name", locator="[data-qa='header-username]"
+            page, name="User Name", locator="[data-qa='header-username']"
         )
 
         self.header_user_dropdown_name = Text(

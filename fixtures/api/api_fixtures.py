@@ -5,7 +5,7 @@ from core.api.clients.authentication.authentication_client import get_authentica
 from core.api.clients.authentication.authentication_schema import LoginRequestSchema
 
 
-@pytest.fixture()
+@pytest.fixture
 def delete_user():
     users_email = []
     yield users_email
@@ -21,9 +21,8 @@ def delete_user():
             client.delete(url=f"{settings.http_client.url}users/{user['id']}", headers=headers)
             return
 
-    print(f"User {user['id']} not found.")
 
-@pytest.fixture()
+@pytest.fixture
 def delete_board():
     boards_title = []
     yield boards_title
@@ -37,3 +36,21 @@ def delete_board():
     for board in boards:
         if board["title"] in boards_title:
             client.delete(url=f"{settings.http_client.url}boards/{board['id']}", headers=headers)
+
+@pytest.fixture()
+def get_token_admin_session():
+    request = LoginRequestSchema(email=settings.test_admin.email, password=settings.test_admin.password)
+    client = get_authentication_client()
+    response = client.login(request=request)
+    response_data = response.model_dump()
+    token = response_data["access_token"]
+    return token
+
+@pytest.fixture
+def get_token_user_session():
+    request = LoginRequestSchema(email=settings.test_user.email, password=settings.test_user.password)
+    client = get_authentication_client()
+    response = client.login(request=request)
+    response_data = response.model_dump()
+    token = response_data["access_token"]
+    return token

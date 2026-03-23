@@ -1,5 +1,8 @@
+from typing import Any
+
 from playwright.sync_api import Page
 
+from core.api.clients.users.users_schemas import UserRole
 from core.web_ui.components.base_component import BaseComponent
 from core.web_ui.elements.button import Button
 from core.web_ui.elements.input import Input
@@ -45,3 +48,21 @@ class EditUserModal(BaseComponent):
             name="Close",
             locator="[data-qa='modal-close-button']"
         )
+
+    def fill_fields_edit_user_form(self, user: dict[str, Any]) -> None:
+        field_handlers = {
+            "username": lambda value: self.user_name_input.fill(value),
+            "email": lambda value: self.user_email_input.fill(value),
+            "role": lambda value: self.user_role_select.select_by_value(
+                value.value if isinstance(value, UserRole) else value),
+            "avatar_url": lambda value: self.user_avatar_url_input.fill(value),
+        }
+        for field, value in user.items():
+            handler = field_handlers.get(field)
+            if handler is None:
+                raise ValueError(f"Unsupported edit user field: {field}")
+            handler(value)
+            
+    def edit_user(self, user_param: dict[str, Any]) -> None:
+        self.fill_fields_edit_user_form(user_param)
+        self.save_button.click()

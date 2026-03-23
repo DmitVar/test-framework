@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure_commons.types import Severity
 from faker import Faker
 from http import HTTPStatus

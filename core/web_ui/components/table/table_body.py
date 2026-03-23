@@ -41,7 +41,7 @@ class TableBody(BaseComponent):
     def get_all_rows(self)->list[Locator]:
         return self.table_body.locator("tr").all()
 
-    def get_row_by_cell_text(self, cell_text: str):
+    def get_row_by_cell_text(self, cell_text: str) -> Locator | None:
         rows = self.get_all_rows()
         for row in rows:
             cells = row.locator('td').all()

@@ -1,62 +1,37 @@
 import json
-from pathlib import Path
-from time import time
 
-import allure
 import pytest
 from _pytest.fixtures import SubRequest
-from playwright.sync_api import Page, Playwright, BrowserContext
+from playwright.sync_api import Page, Playwright
 
-from core.web_ui.pages.login_page.login_page import LoginPage
-from config import settings, Browser, User
+from config import settings
+from fixtures.api.api_fixtures import get_token_user_session
 from tools.playwright.init_page import init_page
 
 
-def get_storage_state_path(user_role: str) -> Path:
-    """Возвращает путь к файлу состояния для указанной роли"""
-    match user_role:
-        case "admin":
-            return settings.admin_state_file
-        case "user":
-            return settings.user_state_file
-        case _:
-            return None
+def create_storage_state(token: str):
+    origin = "http://localhost:3000"
+    auth_storage_value = {
+        "state": {
+            "token": token,
+            "user": None,
+            "isAuthenticated": True
+        },
+        "version": 0
+    }
 
-def ensure_user_logged_in(user: User, playwright: Playwright) -> Path:
-    storage_path = get_storage_state_path(user.role)
-    if not storage_path:
-        raise ValueError(f"Unknown user role: {user.role}")
-
-    should_login = False
-    if not storage_path.exists():
-        should_login = True
-    else:
-        if storage_path.stat().st_size == 0:
-            should_login = True
-        else:
-            st_t = storage_path.stat().st_mtime
-            file_age = time() - storage_path.stat().st_mtime
-            should_login = file_age > settings.max_browser_state_file_age
-            if not should_login:
-                try:
-                    with open(storage_path, "r") as f:
-                        json.load(f)
-                except json.JSONDecodeError:
-                    should_login = True
-
-    if should_login:
-        browser = playwright.chromium.launch()
-        context = browser.new_context()
-        page = context.new_page()
-        login_page = LoginPage(page)
-        login_page.go()
-        login_page.login(user.email, user.password)
-        page.wait_for_url("http://localhost:3000/dashboard", timeout=10000)
-
-        context.storage_state(path=storage_path)
-        browser.close()
-
-    return storage_path
+    return {
+        "cookies": [],
+        "origins": [
+            {
+                "origin": origin,
+                "localStorage": [
+                    {"name": "token", "value": token},
+                    {"name": "auth-storage", "value": json.dumps(auth_storage_value)}
+                ]
+            }
+        ]
+    }
 
 @pytest.fixture(params=settings.browser)
 def playwright_page(request: SubRequest, playwright: Playwright) -> Page:
@@ -67,23 +42,23 @@ def playwright_page(request: SubRequest, playwright: Playwright) -> Page:
     )
 
 @pytest.fixture(params=settings.browser)
-def playwright_page_with_admin_state(request: SubRequest, playwright: Playwright) -> Page:
-    storage_path = ensure_user_logged_in(settings.test_admin, playwright)
-    storage_path_str = str(storage_path)
+def playwright_page_with_admin_state(request: SubRequest, playwright: Playwright, get_token_admin_session) -> Page:
+    token = get_token_admin_session
+    state = create_storage_state(token)
     yield from init_page(
         playwright,
         test_name=request.node.name,
         browser_type=request.param,
-        storage_state=storage_path_str,
+        storage_state=state
     )
 
 @pytest.fixture(params=settings.browser)
-def playwright_page_with_user_state(request: SubRequest, playwright: Playwright) -> Page:
-    storage_path = ensure_user_logged_in(settings.test_user, playwright)
-    storage_path_str = str(storage_path)
+def playwright_page_with_user_state(request: SubRequest, playwright: Playwright, get_token_user_session) -> Page:
+    token = get_token_user_session
+    state = create_storage_state(token)
     yield from init_page(
         playwright,
         test_name=request.node.name,
         browser_type=request.param,
-        storage_state=storage_path_str,
+        storage_state=state
     )

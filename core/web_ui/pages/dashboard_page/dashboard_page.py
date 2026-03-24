@@ -1,7 +1,5 @@
 from playwright.sync_api import Locator, Page
 
-from config import settings
-from core.web_ui.components.card import Card
 from core.web_ui.components.create_board_modal import CreateBoardModal
 from core.web_ui.components.dashboard import Dashboard
 from core.web_ui.components.header import Header
@@ -51,11 +49,11 @@ class DashboardPage(BasePage):
     def check_user_name(self, user_name: str) -> None:
         self.header.header_user_info_button.check_have_text(user_name)
 
-    def create_board(self, board_name: str, board_description: str | None = None, is_public: bool = False):
+    def create_board(self, board_name: str, board_description: str | None = None, is_public: bool = False) -> None:
         self.create_board_button.click()
         self.create_board_modal.create_board(board_name, board_description, is_public)
 
-    def find_board_by_name(self, board_name: str) -> Locator:
+    def find_board_by_name(self, board_name: str) -> Locator | None:
         for board in self.cards_list:
             board_title = board.locator("h3").text_content()
             if board_title == board_name:
@@ -71,5 +69,5 @@ class DashboardPage(BasePage):
     def get_board_url(self, board: Locator) -> str:
         href = board.locator("a").get_attribute("href")
         return href
-    def go_to_boards_page(self):
+    def go_to_boards_page(self) -> None:
         self.sidebar.click_boards_link()

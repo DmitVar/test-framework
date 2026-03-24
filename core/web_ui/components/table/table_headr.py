@@ -1,6 +1,3 @@
-from playwright.sync_api import Page
-
-from core.web_ui.components.base_component import BaseComponent
 from core.web_ui.components.table.table_body import TableBody
 from core.web_ui.components.table.table_header_row import TableHeaderRow
 

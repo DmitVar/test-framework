@@ -70,7 +70,7 @@ class RegistrationPage(BasePage):
 
         self.header = Header(page)
 
-    def registration_new_user(self, user_name: str, email: str, password: str, confirm_password: str):
+    def registration_new_user(self, user_name: str, email: str, password: str, confirm_password: str) -> None:
         self.user_name_input.fill(user_name)
         self.user_name_input.check_have_value(user_name)
         self.email_input.fill(email)

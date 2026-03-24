@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Locator
 
 from core.web_ui.components.sidebar import Sidebar
 from core.web_ui.components.table.table import Table
@@ -37,10 +37,10 @@ class BoardsPage(BasePage):
         )
         self.boards_table = Table(page, page.locator("table"))
 
-    def search_board_by_title(self, board_title: str):
+    def search_board_by_title(self, board_title: str) -> Locator | None:
         self.search_board_input.fill(board_title)
         return self.boards_table.body.get_row_by_cell_text(board_title)
 
-    def get_cell(self, board_title: str):
+    def get_cell(self, board_title: str) -> Text:
         row = self.search_board_by_title(board_title)
         return self.boards_table.body.row.cell.cell(row)

@@ -20,7 +20,7 @@ class Text(BaseElement):
             final_locator = final_locator.nth(nth)
             return final_locator.inner_text()
 
-    def check_have_text(self, text: str, nth: int = 0, **kwargs) -> bool:
+    def check_have_text(self, text: str, nth: int = 0, **kwargs) -> None:
         locator = self.get_locator(nth, **kwargs)
         with allure.step(
             f"Check {self.type_of} with name '{self.name}' has text '{text}'"

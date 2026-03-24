@@ -1,6 +1,5 @@
 import allure
-from playwright.sync_api import expect
-from ui_coverage_tool import ActionType
+from playwright.sync_api import Locator
 
 from core.web_ui.elements.base_element import BaseElement
 
@@ -11,15 +10,15 @@ class Checkbox(BaseElement):
     def type_of(self) -> str:
         return "checkbox"
 
-    def get_locator(self, nth: int = 0, **kwargs):
+    def get_locator(self, nth: int = 0, **kwargs) -> Locator:
         return super().get_locator(nth, **kwargs)
 
     @allure.step("Checking that a checkbox is selected")
     def is_checked(self, nth = 0, **kwargs) -> bool:
-        locator = self.get_locator(nth = 0, **kwargs)
+        locator = self.get_locator(nth, **kwargs)
         return locator.is_checked()
 
     @allure.step("Select checkbox")
-    def check(self, nth = 0, **kwargs):
+    def check(self, nth = 0, **kwargs) -> None:
         locator = self.get_locator(nth, **kwargs)
         locator.check()

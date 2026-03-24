@@ -39,7 +39,7 @@ class LoginPage(BasePage):
         self.header = Header(page)
 
     @allure.step("User authorization with email: {1}")
-    def login(self, email: str, password: str):
+    def login(self, email: str, password: str) -> None:
         self.go()
         self.email_input.check_visible()
         self.email_input.fill(email)
@@ -50,14 +50,14 @@ class LoginPage(BasePage):
         self.login_button.check_visible()
         self.login_button.click()
 
-    def check_email_alert_visible(self):
+    def check_email_alert_visible(self) -> None:
         self.email_alert.check_visible()
 
-    def check_email_alert_have_text(self, text: str):
+    def check_email_alert_have_text(self, text: str) -> None:
         self.email_alert.check_have_text(text)
 
-    def check_message_visible(self):
+    def check_message_visible(self) -> None:
         self.message.check_visible()
 
-    def check_message_have_text(self, text: str):
+    def check_message_have_text(self, text: str) -> None:
         self.message.check_have_text(text)

@@ -19,6 +19,7 @@ blob-report/
 video/
 screenshots/
 trace.zip
+coverage-results/*
 
 # Инструменты линтинга и IDE
 .pytest_cache/

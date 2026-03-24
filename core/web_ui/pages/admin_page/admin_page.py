@@ -1,3 +1,5 @@
+from typing import Any
+
 from playwright.sync_api import Page, Locator
 
 from core.web_ui.components.delete_user_modal import DeleteUserModal
@@ -33,7 +35,7 @@ class AdminPage(BasePage):
         self.edit_user_modal = EditUserModal(page)
         self.delete_user_modal = DeleteUserModal(page)
 
-    def edit_user(self, user_id: int, user_param: dict[str, str]) -> None:
+    def edit_user(self, user_id: int, user_param: dict[str, Any]) -> None:
         edit_user_button = Button(
             page=self.page,
             name="Edit",

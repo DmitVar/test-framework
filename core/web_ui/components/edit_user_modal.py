@@ -51,11 +51,11 @@ class EditUserModal(BaseComponent):
 
     def fill_fields_edit_user_form(self, user: dict[str, Any]) -> None:
         field_handlers = {
-            "username": lambda value: self.user_name_input.fill(value),
-            "email": lambda value: self.user_email_input.fill(value),
+            "username": lambda value: self.user_name_input.fill(str(value)),
+            "email": lambda value: self.user_email_input.fill(str(value)),
             "role": lambda value: self.user_role_select.select_by_value(
-                value.value if isinstance(value, UserRole) else value),
-            "avatar_url": lambda value: self.user_avatar_url_input.fill(value),
+                str(value.value) if isinstance(value, UserRole) else str(value)),
+            "avatar_url": lambda value: self.user_avatar_url_input.fill(str(value)),
         }
         for field, value in user.items():
             handler = field_handlers.get(field)

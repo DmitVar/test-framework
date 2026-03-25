@@ -19,6 +19,7 @@ logger = AllureLogger()
 @allure.story(AllureStory.AUTHORIZATION)
 @allure.tag(AllureTags.AUTHORIZATION, AllureTags.USER_LOGIN)
 @allure.severity(Severity.CRITICAL)
+@pytest.mark.ui
 @pytest.mark.authorization
 class TestLoginPage:
     @allure.title("Login with incorrect email")
@@ -47,6 +48,7 @@ class TestLoginPage:
         login_page.check_message_have_text(expected)
 
     @allure.title("Login with correct email or password")
+    @pytest.mark.smoke
     def test_login_with_correct_email_and_password(self, playwright_page: Page):
         login_page = LoginPage(playwright_page)
         login_page.login(settings.test_user.email, settings.test_user.password )

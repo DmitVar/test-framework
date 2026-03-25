@@ -15,9 +15,12 @@ fake = Faker()
 @allure.story(AllureStory.REGISTRATION)
 @allure.tag(AllureTags.REGISTRATION, AllureTags.CREATE_USER)
 @allure.severity(Severity.CRITICAL)
+@pytest.mark.ui
 @pytest.mark.authorization
 class TestRegistrationPage:
     @allure.title("Test create new user")
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_registration_user(self, playwright_page: Page, delete_user):
         new_user_name = fake.first_name()
         new_user_email = fake.email(domain="example.com")

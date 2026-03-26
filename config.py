@@ -46,8 +46,6 @@ class Settings(BaseSettings):
     allure_results_dir: DirectoryPath
     video_dir: DirectoryPath
     tracing_dir: DirectoryPath
-    user_state_file: FilePath
-    admin_state_file: FilePath
     max_browser_state_file_age: int = 3600
     http_client: HTTPClientConfig
 
@@ -56,21 +54,14 @@ class Settings(BaseSettings):
         video_dir = DirectoryPath("./video")
         tracing_dir = DirectoryPath("./tracing")
         allure_results_dir = DirectoryPath("./allure-results")
-        user_state_file = FilePath(".auth/user_state.json")
-        admin_state_file = FilePath(".auth/admin_state.json")
-
         video_dir.mkdir(exist_ok=True)
         tracing_dir.mkdir(exist_ok=True)
         allure_results_dir.mkdir(exist_ok=True)
-        user_state_file.touch(exist_ok=True)
-        admin_state_file.touch(exist_ok=True)
 
         return Settings(
             video_dir=video_dir,
             tracing_dir=tracing_dir,
             allure_results_dir=allure_results_dir,
-            user_state_file=user_state_file,
-            admin_state_file=admin_state_file,
         )
 
     def get_base_url(self) -> str:

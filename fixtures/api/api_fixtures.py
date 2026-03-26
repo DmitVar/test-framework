@@ -1,9 +1,13 @@
 import pytest
+from faker import Faker
 
 from config import settings
 from core.api.clients.authentication.authentication_client import get_authentication_client
 from core.api.clients.authentication.authentication_schema import LoginRequestSchema
+from core.api.clients.authentication.registration_schema import CreateUserRequestSchema
+from core.api.clients.authentication.registration_user_client import get_registration_user_client
 
+faker = Faker()
 
 @pytest.fixture
 def delete_user():
@@ -54,3 +58,14 @@ def get_token_user_session():
     response_data = response.model_dump()
     token = response_data["access_token"]
     return token
+
+@pytest.fixture
+def create_user():
+    user_name = faker.first_name()
+    email = faker.email()
+    password = faker.password()
+    request = CreateUserRequestSchema(username=user_name, email=email, password=password)
+    client = get_registration_user_client()
+    client.register_user(request=request)
+    user = LoginRequestSchema(email=email, password=password)
+    return (user, {"name": user_name, "email": email})

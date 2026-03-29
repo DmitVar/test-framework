@@ -7,9 +7,11 @@ from core.web_ui.elements.checkbox import Checkbox
 from core.web_ui.elements.input import Input
 from core.web_ui.elements.text import Text
 from core.web_ui.pages.base_page import BasePage
+from core.web_ui.pages.board_page.board_page import BoardPage
 
 
 class BoardsPage(BasePage):
+    base_url = "http://localhost:3000/boards"
     def __init__(self, page: Page):
         super().__init__(page)
 
@@ -44,3 +46,12 @@ class BoardsPage(BasePage):
     def get_cell(self, board_title: str) -> Text:
         row = self.search_board_by_title(board_title)
         return self.boards_table.body.row.cell.cell(row)
+
+    def go_to_board(self, board_title: str):
+        row = self.search_board_by_title(board_title)
+        row.locator('td').all()[-1].click()
+        self.page.wait_for_timeout(timeout=2)
+        board_id = self.page.url.split("/")[-1]
+        board_page = BoardPage(self.page, board_id)
+        board_page.go()
+        return board_page

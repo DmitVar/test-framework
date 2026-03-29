@@ -3,6 +3,7 @@ from playwright.sync_api import Page
 
 from core.web_ui.components.base_component import BaseComponent
 from core.web_ui.elements.button import Button
+from core.web_ui.elements.input import Input
 from core.web_ui.elements.link import Link
 from core.web_ui.elements.text import Text
 
@@ -42,6 +43,11 @@ class Header(BaseComponent):
         )
         self.header_user_dropdown_logout_button = Button(
             page, name="User Logout Button", locator="[data-qa='header-logout-button']"
+        )
+        self.header_search_tasks_input = Input(
+            page,
+            name="Search Tasks Input",
+            locator="[data-qa='header-search-input']"
         )
 
     @allure.step("Automation Lab Link clik")

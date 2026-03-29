@@ -58,4 +58,3 @@ class TestDashboardPage:
         cell = boards_page.get_cell(board_title)
         cell.check_have_text(board_title, nth=1)
         delete_board.append(board_title)
-

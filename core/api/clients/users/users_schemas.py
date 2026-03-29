@@ -8,6 +8,15 @@ class UserRole(StrEnum):
     USER = 'user'
     GUEST = 'guest'
 
+class TaskPriority(StrEnum):
+    HIGH = 'high'
+    MEDIUM = 'medium'
+    LOW = 'low'
+
+class TaskStatus(StrEnum):
+    TODO = 'todo'
+    IN_PROGRESS = 'in_progress'
+    DONE = 'done'
 
 
 class UserSchema(BaseModel):
@@ -23,10 +32,28 @@ class RequestUpdateUserSchema(BaseModel):
     username: str
     email: EmailStr
     role: UserRole
-    avatar_url: str
+    avatar_url: str | None = None
 
 class RequestUpdateUserPasswordSchema(BaseModel):
     new_password: str
 
 class RequestUpdateUserAvatarSchema(BaseModel):
     avatar_url: str
+
+class UserTaskSchema(BaseModel):
+    title: str
+    description: str
+    priority: TaskPriority
+    parent_task_id: int | None = None
+    created_by: int
+    created_at: datetime
+    id: int
+    status: TaskStatus
+    order: int
+    board_id: int
+    assignee_id: int | None = None
+    updated_at: datetime | None = None
+
+class ResponseGetUserAvatarSchema(BaseModel):
+    user_id: int
+    avatar_url: str | None = None

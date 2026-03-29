@@ -3,7 +3,8 @@ from httpx import Response
 from config import settings, User
 from core.api.clients.api_client import APIClient
 from core.api.clients.private_http_builder import get_private_http_client
-from core.api.clients.users.users_schemas import RequestUpdateUserSchema, RequestUpdateUserAvatarSchema
+from core.api.clients.users.users_schemas import RequestUpdateUserSchema, RequestUpdateUserAvatarSchema, \
+    RequestUpdateUserPasswordSchema
 
 
 class UsersClient(APIClient):
@@ -19,7 +20,7 @@ class UsersClient(APIClient):
 
     def get_users(self)->Response:
         return self.get(
-            url=f"{settings.http_client.url}users"
+            url=f"{settings.http_client.url}users/"
         )
 
     def get_user_by_id(self, user_id: int)->Response:
@@ -36,7 +37,7 @@ class UsersClient(APIClient):
             url=f"{settings.http_client.url}users/{user_id}"
         )
 
-    def update_user_password(self, request: RequestUpdateUserSchema, user_id: int)->Response:
+    def update_user_password(self, request: RequestUpdateUserPasswordSchema, user_id: int)->Response:
         return self.put(
             url=f"{settings.http_client.url}users/{user_id}/password",
             json=request.model_dump(by_alias=True)

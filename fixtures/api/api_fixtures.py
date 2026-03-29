@@ -68,4 +68,4 @@ def create_user():
     client = get_registration_user_client()
     client.register_user(request=request)
     user = LoginRequestSchema(email=email, password=password)
-    return (user, {"name": user_name, "email": email})
+    return (user, {"name": user_name, "email": email, "password": password})

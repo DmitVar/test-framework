@@ -22,7 +22,7 @@ class TableRow(BaseComponent):
     def cell(self) -> TableCell:
         return TableCell(self.page)
 
-    def find_row_index(self, cells: list[Cell]) -> int:
+    def find_row_index(self, cells: list[Cell]) -> int | None:
         rows_locator = self.table_body.locator("tr")
         for row_index in range(rows_locator.count()):
             row_locator = rows_locator.nth(row_index)
@@ -32,6 +32,7 @@ class TableRow(BaseComponent):
             )
             if row_found:
                 return row_index
+        return None
 
     def find_row_locator(self, cells: list[Cell]) -> Locator:
         row_index = self.find_row_index(cells)

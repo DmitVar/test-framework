@@ -9,9 +9,6 @@ class Checkbox(BaseElement):
     def type_of(self) -> str:
         return "checkbox"
 
-    def get_locator(self, nth: int = 0, **kwargs) -> Locator:
-        return super().get_locator(nth, **kwargs)
-
     @allure.step("Checking that a checkbox is selected")
     def is_checked(self, nth=0, **kwargs) -> bool:
         locator = self.get_locator(nth, **kwargs)

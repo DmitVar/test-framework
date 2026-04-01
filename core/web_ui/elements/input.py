@@ -10,9 +10,6 @@ class Input(BaseElement):
     def type_of(self) -> str:
         return "input"
 
-    def get_locator(self, nth: int = 0, **kwargs) -> Locator:
-        return super().get_locator(nth, **kwargs)
-
     def get_raw_locator(self, nth: int = 0, **kwargs) -> str:
         return f"{super().get_raw_locator(nth, **kwargs)}"
 

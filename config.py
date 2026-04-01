@@ -1,7 +1,7 @@
 from enum import StrEnum
 from typing import Self
 
-from pydantic import BaseModel, EmailStr, HttpUrl, DirectoryPath, FilePath
+from pydantic import BaseModel, EmailStr, HttpUrl, DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

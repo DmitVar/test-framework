@@ -1,4 +1,4 @@
-from typing import Any, Sized
+from typing import Any
 
 import allure
 from tools.logger import get_logger
@@ -37,7 +37,7 @@ def assert_is_true(actual: Any, name: str):
     )
 
 
-def assert_length(actual: Sized, expected: Sized, name: str):
+def assert_length(actual: Any, expected: Any, name: str):
     with allure.step(f"Check that length of {name} equals to {len(expected)}"):
         logger.info(f'Check that length of "{name}" equals to {len(expected)}')
         assert len(actual) == len(expected), (

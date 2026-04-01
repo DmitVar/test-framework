@@ -12,30 +12,25 @@ from core.web_ui.pages.board_page.board_page import BoardPage
 
 class BoardsPage(BasePage):
     base_url = "http://localhost:3000/boards"
+
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.page_title = Text(
-            page,
-            name="Title",
-            locator="h1"
-        )
+        self.page_title = Text(page, name="Title", locator="h1")
         self.sidebar = Sidebar(page)
 
         self.create_board_button = Button(
             page,
             name="Create Board Button",
-            locator="[data-qa='boards-create-board-button']"
+            locator="[data-qa='boards-create-board-button']",
         )
         self.search_board_input = Input(
-            page,
-            name="Search Board Input",
-            locator="[data-qa='boards-search-input']"
+            page, name="Search Board Input", locator="[data-qa='boards-search-input']"
         )
         self.checkbox_only_public_boards = Checkbox(
             page,
             name="Checkbox Only Public Boards",
-            locator="[data-qa='boards-public-only-checkbox']"
+            locator="[data-qa='boards-public-only-checkbox']",
         )
         self.boards_table = Table(page, page.locator("table"))
 
@@ -49,7 +44,7 @@ class BoardsPage(BasePage):
 
     def go_to_board(self, board_title: str):
         row = self.search_board_by_title(board_title)
-        row.locator('td').all()[-1].click()
+        row.locator("td").all()[-1].click()
         self.page.wait_for_timeout(timeout=2)
         board_id = self.page.url.split("/")[-1]
         board_page = BoardPage(self.page, board_id)

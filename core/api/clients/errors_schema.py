@@ -7,18 +7,21 @@ class ValidationErrorSchema(BaseModel):
     """
     A model describing the structure of an API validation error.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     type: str
     message: str = Field(alias="msg")
     location: list[str | int] = Field(alias="loc")
 
+
 class ValidationErrorResponseSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     detail: list[ValidationErrorSchema] = Field(alias="detail")
 
+
 class InternalErrorResponseSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
-    
+
     detail: str = Field(alias="detail")

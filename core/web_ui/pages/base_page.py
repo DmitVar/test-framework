@@ -10,7 +10,6 @@ class BasePage:
     def __init__(self, page: Page):
         self.page = page
 
-
     def go(self):
         with allure.step(f"Go to {self.base_url}"):
             self.page.goto(self.base_url, wait_until="networkidle")

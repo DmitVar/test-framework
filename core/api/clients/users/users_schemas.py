@@ -3,20 +3,23 @@ from enum import StrEnum
 
 from pydantic import BaseModel, EmailStr
 
+
 class UserRole(StrEnum):
-    ADMIN = 'admin'
-    USER = 'user'
-    GUEST = 'guest'
+    ADMIN = "admin"
+    USER = "user"
+    GUEST = "guest"
+
 
 class TaskPriority(StrEnum):
-    HIGH = 'high'
-    MEDIUM = 'medium'
-    LOW = 'low'
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
+
 
 class TaskStatus(StrEnum):
-    TODO = 'todo'
-    IN_PROGRESS = 'in_progress'
-    DONE = 'done'
+    TODO = "todo"
+    IN_PROGRESS = "in_progress"
+    DONE = "done"
 
 
 class UserSchema(BaseModel):
@@ -34,11 +37,14 @@ class RequestUpdateUserSchema(BaseModel):
     role: UserRole
     avatar_url: str | None = None
 
+
 class RequestUpdateUserPasswordSchema(BaseModel):
     new_password: str
 
+
 class RequestUpdateUserAvatarSchema(BaseModel):
     avatar_url: str
+
 
 class UserTaskSchema(BaseModel):
     title: str
@@ -53,6 +59,7 @@ class UserTaskSchema(BaseModel):
     board_id: int
     assignee_id: int | None = None
     updated_at: datetime | None = None
+
 
 class ResponseGetUserAvatarSchema(BaseModel):
     user_id: int

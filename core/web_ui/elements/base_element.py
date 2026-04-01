@@ -9,7 +9,9 @@ loger = get_logger("BASE_ELEMENT")
 
 
 class BaseElement:
-    def __init__(self, page: Page, locator: str, name: str, base_locator: Locator | None = None):
+    def __init__(
+        self, page: Page, locator: str, name: str, base_locator: Locator | None = None
+    ):
         self.locator = locator
         self.name = name
         self.page = page
@@ -29,17 +31,19 @@ class BaseElement:
         else:
             base = self.page
         locator = self.locator.format(**kwargs)
-        with allure.step(f"Get locator: {self.locator} of element with name: {self.name} at index {nth}"):
+        with allure.step(
+            f"Get locator: {self.locator} of element with name: {self.name} at index {nth}"
+        ):
             return base.locator(locator).nth(nth)
 
-    def get_raw_locator(self, nth: int = 0, **kwargs)-> str:
+    def get_raw_locator(self, nth: int = 0, **kwargs) -> str:
         return f"{self.locator.format(**kwargs)}[{nth}]"
 
     def track_coverage(self, action_type: ActionType, nth: int = 0, **kwargs):
         tracker.track_coverage(
             selector=self.get_raw_locator(nth, **kwargs),
             action_type=action_type,
-            selector_type=SelectorType.CSS
+            selector_type=SelectorType.CSS,
         )
 
     def click(self, nth: int = 0, **kwargs) -> None:

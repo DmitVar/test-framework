@@ -10,31 +10,15 @@ class Card(BaseComponent):
         super().__init__(page)
         self.root = locator
 
-        self.card_title = Text(
-            page,
-            name="card-title",
-            locator=self.root.locator("h3")
-        )
-        self.card_link = Link(
-            page,
-            name="card-link",
-            locator=self.root.locator("a")
-        )
+        self.card_title = Text(page, name="card-title", locator=self.root.locator("h3"))
+        self.card_link = Link(page, name="card-link", locator=self.root.locator("a"))
 
-        self.card_text = Text(
-            page,
-            name="card-text",
-            locator=self.root.locator("p")
-        )
+        self.card_text = Text(page, name="card-text", locator=self.root.locator("p"))
         self.card_date = Text(
-            page,
-            name="card-date",
-            locator=self.root.locator("span:first-child")
-
+            page, name="card-date", locator=self.root.locator("span:first-child")
         )
         self.public_label = Text(
             page,
             name="public-label",
-            locator=self.root.locator("span:text('Публичная')")
+            locator=self.root.locator("span:text('Публичная')"),
         )
-

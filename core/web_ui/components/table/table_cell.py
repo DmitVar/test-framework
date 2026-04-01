@@ -20,10 +20,7 @@ class TableCell(BaseComponent):
     def cell(self, base_locator: Locator) -> Text:
         self._current_base_locator = base_locator
         self.current_cell = Text(
-            self.page,
-            base_locator=base_locator,
-            name="Table Cell Text",
-            locator="td"
+            self.page, base_locator=base_locator, name="Table Cell Text", locator="td"
         )
         return self.current_cell
 

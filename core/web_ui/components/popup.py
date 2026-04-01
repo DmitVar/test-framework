@@ -14,9 +14,7 @@ class Popup(BaseComponent):
             locator="div.toast-container p.toast-message",
         )
         self.close_button = Button(
-            page,
-            name="Close",
-            locator="div.toast-container button.toast-close-btn"
+            page, name="Close", locator="div.toast-container button.toast-close-btn"
         )
 
     def get_popup_text(self) -> str:

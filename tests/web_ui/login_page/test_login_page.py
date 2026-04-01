@@ -34,7 +34,11 @@ class TestLoginPage:
         "email, password, expected",
         [
             (settings.test_user.email, "12345678", "Неверный пароль"),
-            ("example@example.com", settings.test_user.password, "Пользователь с таким email не найден в системе"),
+            (
+                "example@example.com",
+                settings.test_user.password,
+                "Пользователь с таким email не найден в системе",
+            ),
         ],
         ids=["incorrect password", "incorrect email"],
     )
@@ -51,7 +55,7 @@ class TestLoginPage:
     @pytest.mark.smoke
     def test_login_with_correct_email_and_password(self, playwright_page: Page):
         login_page = LoginPage(playwright_page)
-        login_page.login(settings.test_user.email, settings.test_user.password )
+        login_page.login(settings.test_user.email, settings.test_user.password)
         login_page.wait_page_loaded()
         expected_url = "http://localhost:3000/dashboard"
         login_page.check_current_url(expected_url)

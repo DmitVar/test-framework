@@ -45,9 +45,7 @@ class Header(BaseComponent):
             page, name="User Logout Button", locator="[data-qa='header-logout-button']"
         )
         self.header_search_tasks_input = Input(
-            page,
-            name="Search Tasks Input",
-            locator="[data-qa='header-search-input']"
+            page, name="Search Tasks Input", locator="[data-qa='header-search-input']"
         )
 
     @allure.step("Automation Lab Link clik")

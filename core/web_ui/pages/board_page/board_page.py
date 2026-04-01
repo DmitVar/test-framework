@@ -10,6 +10,7 @@ from core.web_ui.pages.base_page import BasePage
 
 class BoardPage(BasePage):
     base_url = "http://localhost:3000/boards/"
+
     def __init__(self, page: Page, board_id: str):
         super().__init__(page)
         self.base_url = self.base_url + board_id
@@ -55,7 +56,9 @@ class BoardPage(BasePage):
             locator="[data-qa='board-priority-filter']",
         )
         self.column_todo = self.page.locator("[data-qa='kanban-column-todo']")
-        self.column_in_progress = self.page.locator("[data-qa='kanban-column-in_progress']")
+        self.column_in_progress = self.page.locator(
+            "[data-qa='kanban-column-in_progress']"
+        )
         self.column_done = self.page.locator("[data-qa='kanban-column-done']")
 
         self.header = Header(page)

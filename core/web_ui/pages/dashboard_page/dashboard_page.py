@@ -19,18 +19,14 @@ class DashboardPage(BasePage):
         self.create_board_button = Button(
             page,
             name="Create Board",
-            locator="[data-qa='dashboard-create-board-button']"
+            locator="[data-qa='dashboard-create-board-button']",
         )
 
         self.empty_board_title = Text(
-            page,
-            name="Empty Board Title",
-            locator="h3.empty-state-title"
+            page, name="Empty Board Title", locator="h3.empty-state-title"
         )
         self.empty_board_message = Text(
-            page,
-            name="Empty Board Message",
-            locator="p.empty-state-message"
+            page, name="Empty Board Message", locator="p.empty-state-message"
         )
 
         self.header = Header(page)
@@ -39,7 +35,7 @@ class DashboardPage(BasePage):
         self.tasks_dashboard = Dashboard(page, "dashboard-stat-total-tasks")
         self.in_progress_dashboard = Dashboard(page, "dashboard-stat-in-progress")
         self.done_dashboard = Dashboard(page, "dashboard-stat-done")
-        self.cards_list = page.locator('div.card.card-clickable').all()
+        self.cards_list = page.locator("div.card.card-clickable").all()
         self.create_board_modal = CreateBoardModal(page)
         self.popup = Popup(page)
 
@@ -49,7 +45,12 @@ class DashboardPage(BasePage):
     def check_user_name(self, user_name: str) -> None:
         self.header.header_user_info_button.check_have_text(user_name)
 
-    def create_board(self, board_name: str, board_description: str | None = None, is_public: bool = False) -> None:
+    def create_board(
+        self,
+        board_name: str,
+        board_description: str | None = None,
+        is_public: bool = False,
+    ) -> None:
         self.create_board_button.click()
         self.create_board_modal.create_board(board_name, board_description, is_public)
 
@@ -63,7 +64,7 @@ class DashboardPage(BasePage):
         return board.locator(".pill--public").count() > 0
 
     def click_board(self, board: Locator) -> None:
-        boar_link = board.locator('a')
+        boar_link = board.locator("a")
         boar_link.click()
 
     def get_board_url(self, board: Locator) -> str:

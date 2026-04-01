@@ -12,11 +12,11 @@ class TableBody(BaseComponent):
         self.table = table
 
     @property
-    def table_body(self)->Locator:
+    def table_body(self) -> Locator:
         return self.table.locator("tbody")
 
     @property
-    def row(self)->TableRow:
+    def row(self) -> TableRow:
         return TableRow(self.page, self.table_body)
 
     def check_row_visible(self, row: TableRow):
@@ -38,16 +38,15 @@ class TableBody(BaseComponent):
     def click_cell(self, row_nth: int, cell_nth: int):
         self.row.click_cell(row_nth=row_nth, cell_nth=cell_nth)
 
-    def get_all_rows(self)->list[Locator]:
+    def get_all_rows(self) -> list[Locator]:
         return self.table_body.locator("tr").all()
 
     def get_row_by_cell_text(self, cell_text: str) -> Locator | None:
         rows = self.get_all_rows()
         for row in rows:
-            cells = row.locator('td').all()
+            cells = row.locator("td").all()
             for cell in cells:
                 text = cell.inner_text()
                 if cell.inner_text() == cell_text:
                     return row
         return None
-

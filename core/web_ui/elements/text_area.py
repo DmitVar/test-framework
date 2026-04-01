@@ -20,7 +20,9 @@ class TextArea(BaseElement):
         self.track_coverage(ActionType.FILL, nth, **kwargs)
 
     def check_have_value(self, value: str, nth: int = 0, **kwargs) -> None:
-        with allure.step(f"Checking that {self.type_of} '{self.name}' has a value '{value}'"):
+        with allure.step(
+            f"Checking that {self.type_of} '{self.name}' has a value '{value}'"
+        ):
             locator = self.get_locator(nth, **kwargs)
             expect(locator).to_have_value(value)
         self.track_coverage(ActionType.VALUE, nth, **kwargs)

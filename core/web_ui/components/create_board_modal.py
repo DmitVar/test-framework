@@ -12,53 +12,47 @@ class CreateBoardModal(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.title = Text(
-            page,
-            name="Title",
-            locator="h2.modal-title"
-        )
+        self.title = Text(page, name="Title", locator="h2.modal-title")
         self.close_button = Button(
-            page,
-            name="Close Button",
-            locator="[data-qa='modal-close-button']"
+            page, name="Close Button", locator="[data-qa='modal-close-button']"
         )
         self.board_name_input_title = Text(
             page,
             name="Board Name Input Title",
-            locator="[for='label-create-board-title-input']"
+            locator="[for='label-create-board-title-input']",
         )
         self.board_name_input = Input(
             page,
             name="Board Name Input",
-            locator="[data-qa='create-board-title-input']"
+            locator="[data-qa='create-board-title-input']",
         )
         self.board_description_textarea_title = Text(
             page,
             name="Board Description Textarea Title",
-            locator="lable:text('Описание (необязательно)')"
+            locator="lable:text('Описание (необязательно)')",
         )
         self.board_description_textarea = TextArea(
             page,
             name="Board Description Textarea",
-            locator="[data-qa='create-board-description-textarea']"
+            locator="[data-qa='create-board-description-textarea']",
         )
         self.public_board_checkbox = Checkbox(
             page,
             name="Public Board Checkbox",
-            locator="[data-qa='create-board-public-checkbox']"
+            locator="[data-qa='create-board-public-checkbox']",
         )
         self.cancel_button = Button(
-            page,
-            name="Cancel Button",
-            locator="[data-qa='create-board-cancel-button']"
+            page, name="Cancel Button", locator="[data-qa='create-board-cancel-button']"
         )
         self.create_board_button = Button(
             page,
             name="Create Board Button",
-            locator="[data-qa='create-board-submit-button']"
+            locator="[data-qa='create-board-submit-button']",
         )
 
-    def create_board(self, board_name: str, description: str | None = None, is_public: bool = False) -> None:
+    def create_board(
+        self, board_name: str, description: str | None = None, is_public: bool = False
+    ) -> None:
         self.board_name_input.fill(board_name)
         self.board_description_textarea.fill(description)
         if is_public:

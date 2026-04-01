@@ -6,6 +6,7 @@ class AllureEpics(StrEnum):
     ADMINISTRATION = "Administration System"
     USER = "User System"
 
+
 class AllureFeature(StrEnum):
     AUTHENTICATION = "Authentication"
     USERS = "Users"
@@ -15,6 +16,7 @@ class AllureStory(StrEnum):
     REGISTRATION = "Registration"
     AUTHORIZATION = "Authorization"
     ADMINISTRATION = "Administration"
+
 
 class AllureTags(StrEnum):
     AUTHORIZATION = "AUTHORIZATION"

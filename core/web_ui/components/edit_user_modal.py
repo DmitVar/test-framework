@@ -14,39 +14,27 @@ class EditUserModal(BaseComponent):
         super().__init__(page)
 
         self.user_name_input = Input(
-            page,
-            name="User Name Input",
-            locator="[data-qa='text']"
+            page, name="User Name Input", locator="[data-qa='text']"
         )
         self.user_email_input = Input(
-            page,
-            name="User Email Input",
-            locator="[data-qa='edit-user-email-input']"
+            page, name="User Email Input", locator="[data-qa='edit-user-email-input']"
         )
         self.user_role_select = Select(
-            page,
-            name="User Role",
-            locator="[data-qa='edit-user-role-select']"
+            page, name="User Role", locator="[data-qa='edit-user-role-select']"
         )
         self.user_avatar_url_input = Input(
             page,
             name="User Avatar URL Input",
-            locator="[data-qa='edit-user-avatar-input']"
+            locator="[data-qa='edit-user-avatar-input']",
         )
         self.save_button = Button(
-            page,
-            name="Save",
-            locator="[data-qa='edit-user-save-button']"
+            page, name="Save", locator="[data-qa='edit-user-save-button']"
         )
         self.cancel_button = Button(
-            page,
-            name="Cancel",
-            locator="[data-qa='edit-user-cancel-button']"
+            page, name="Cancel", locator="[data-qa='edit-user-cancel-button']"
         )
         self.close_button = Button(
-            page,
-            name="Close",
-            locator="[data-qa='modal-close-button']"
+            page, name="Close", locator="[data-qa='modal-close-button']"
         )
 
     def fill_fields_edit_user_form(self, user: dict[str, Any]) -> None:
@@ -54,7 +42,8 @@ class EditUserModal(BaseComponent):
             "username": lambda value: self.user_name_input.fill(str(value)),
             "email": lambda value: self.user_email_input.fill(str(value)),
             "role": lambda value: self.user_role_select.select_by_value(
-                str(value.value) if isinstance(value, UserRole) else str(value)),
+                str(value.value) if isinstance(value, UserRole) else str(value)
+            ),
             "avatar_url": lambda value: self.user_avatar_url_input.fill(str(value)),
         }
         for field, value in user.items():
@@ -62,7 +51,7 @@ class EditUserModal(BaseComponent):
             if handler is None:
                 raise ValueError(f"Unsupported edit user field: {field}")
             handler(value)
-            
+
     def edit_user(self, user_param: dict[str, Any]) -> None:
         self.fill_fields_edit_user_form(user_param)
         self.save_button.click()

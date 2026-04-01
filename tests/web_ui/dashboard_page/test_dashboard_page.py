@@ -9,13 +9,14 @@ from core.web_ui.pages.dashboard_page.dashboard_page import DashboardPage
 
 faker = Faker()
 
+
 @pytest.mark.ui
 class TestDashboardPage:
     @allure.title("Check user name on dashboard page")
     def test_check_user_name_on_dashboard_page(
-            self,
-            playwright_page_with_user_state: Page,
-            user_name: str = settings.test_user.username,
+        self,
+        playwright_page_with_user_state: Page,
+        user_name: str = settings.test_user.username,
     ):
         page = playwright_page_with_user_state
         dashboard_page = DashboardPage(page)
@@ -24,9 +25,9 @@ class TestDashboardPage:
 
     @allure.title("Check admin name on dashboard page")
     def test_check_admin_name_on_dashboard_page(
-            self,
-            playwright_page_with_admin_state: Page,
-            user_name: str = settings.test_admin.username,
+        self,
+        playwright_page_with_admin_state: Page,
+        user_name: str = settings.test_admin.username,
     ):
         page = playwright_page_with_admin_state
         dashboard_page = DashboardPage(page)
@@ -35,20 +36,21 @@ class TestDashboardPage:
 
     @allure.title("Test create new board on dashboard page")
     @pytest.mark.registration
-    @pytest.mark.parametrize("board_title, board_description, is_public",
-                             [
-                                 (faker.text(max_nb_chars=30), faker.text(max_nb_chars=100), True),
-                                 (faker.text(max_nb_chars=30), faker.text(max_nb_chars=100), False),
-                             ],
-                             ids=["public", "private"]
-                             )
+    @pytest.mark.parametrize(
+        "board_title, board_description, is_public",
+        [
+            (faker.text(max_nb_chars=30), faker.text(max_nb_chars=100), True),
+            (faker.text(max_nb_chars=30), faker.text(max_nb_chars=100), False),
+        ],
+        ids=["public", "private"],
+    )
     def test_create_board_on_dashboard_page(
-            self,
-            playwright_page_with_user_state: Page,
-            board_title: str,
-            board_description: str,
-            is_public: bool,
-            delete_board
+        self,
+        playwright_page_with_user_state: Page,
+        board_title: str,
+        board_description: str,
+        is_public: bool,
+        delete_board,
     ):
         dashboard_page = DashboardPage(playwright_page_with_user_state)
         dashboard_page.go()

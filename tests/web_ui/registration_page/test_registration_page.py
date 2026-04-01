@@ -10,6 +10,7 @@ from tools.allure.allure_enum import AllureTags, AllureStory, AllureFeature, All
 
 fake = Faker()
 
+
 @allure.epic(AllureEpics.TMS)
 @allure.feature(AllureFeature.AUTHENTICATION)
 @allure.story(AllureStory.REGISTRATION)
@@ -24,7 +25,9 @@ class TestRegistrationPage:
     def test_registration_user(self, playwright_page: Page, delete_user):
         new_user_name = fake.first_name()
         new_user_email = fake.email(domain="example.com")
-        new_user_password = fake.password(length=10, upper_case=True, lower_case=True, special_chars=True, digits=True)
+        new_user_password = fake.password(
+            length=10, upper_case=True, lower_case=True, special_chars=True, digits=True
+        )
         try:
             registration_page = RegistrationPage(playwright_page)
             registration_page.go()
@@ -32,7 +35,7 @@ class TestRegistrationPage:
                 user_name=new_user_name,
                 email=new_user_email,
                 password=new_user_password,
-                confirm_password=new_user_password
+                confirm_password=new_user_password,
             )
             registration_page.wait_page_loaded()
             expected_url = "http://localhost:3000/dashboard"

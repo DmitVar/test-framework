@@ -17,18 +17,12 @@ class AdminPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.page_title = Text(
-            page,
-            name="Title",
-            locator="h1"
-        )
+        self.page_title = Text(page, name="Title", locator="h1")
         self.header = Header(page)
         self.sidebar = Sidebar(page)
 
         self.search_user_input = Input(
-            page,
-            name="Search User Input",
-            locator="[data-qa='input']"
+            page, name="Search User Input", locator="[data-qa='input']"
         )
 
         self.user_table = Table(page, page.locator("table"))
@@ -39,7 +33,7 @@ class AdminPage(BasePage):
         edit_user_button = Button(
             page=self.page,
             name="Edit",
-            locator=f"[data-qa='edit-user-button-{user_id}']"
+            locator=f"[data-qa='edit-user-button-{user_id}']",
         )
         edit_user_button.click()
         self.edit_user_modal.edit_user(user_param)
@@ -48,7 +42,7 @@ class AdminPage(BasePage):
         delete_user_button = Button(
             page=self.page,
             name="Delete",
-            locator=f"[data-qa='delete-user-button-{user_id}']"
+            locator=f"[data-qa='delete-user-button-{user_id}']",
         )
         delete_user_button.click()
         self.delete_user_modal.delete_user()

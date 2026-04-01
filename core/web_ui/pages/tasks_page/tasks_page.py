@@ -15,19 +15,13 @@ class TaskPage(BasePage):
         self.header = Header(page)
         self.sidebar = Sidebar(page)
         self.task_search_input = Input(
-            page,
-            name="Task Search Input",
-            locator="[data-qa='tasks-search-input']"
+            page, name="Task Search Input", locator="[data-qa='tasks-search-input']"
         )
         self.task_status = Select(
-            page,
-            name="Task Status",
-            locator="[data-qa='tasks-status-filter']"
+            page, name="Task Status", locator="[data-qa='tasks-status-filter']"
         )
 
         self.task_priority = Select(
-            page,
-            name="Task Priority",
-            locator="[data-qa='tasks-priority-filter']"
+            page, name="Task Priority", locator="[data-qa='tasks-priority-filter']"
         )
         self.tasks_table = Table(page, page.locator("table"))

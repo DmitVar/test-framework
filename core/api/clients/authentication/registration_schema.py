@@ -6,6 +6,7 @@ class CreateUserRequestSchema(BaseModel):
     email: EmailStr
     password: str
 
+
 class CreateUserResponseSchema(BaseModel):
     access_token: str
     token_type: str

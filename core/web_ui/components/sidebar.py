@@ -10,24 +10,16 @@ class Sidebar(BaseComponent):
         super().__init__(page)
 
         self.home_link = Link(
-            page,
-            name="Home Link",
-            locator="[data-qa='sidebar-home-link']"
+            page, name="Home Link", locator="[data-qa='sidebar-home-link']"
         )
         self.boards_link = Link(
-            page,
-            name="Boards Link",
-            locator="[data-qa='sidebar-boards-link']"
+            page, name="Boards Link", locator="[data-qa='sidebar-boards-link']"
         )
         self.tasks_link = Link(
-            page,
-            name="Tasks Link",
-            locator="[data-qa='sidebar-tasks-link']"
+            page, name="Tasks Link", locator="[data-qa='sidebar-tasks-link']"
         )
         self.admin_link = Link(
-            page,
-            name="Admin Link",
-            locator="[data-qa='sidebar-admin-link']"
+            page, name="Admin Link", locator="[data-qa='sidebar-admin-link']"
         )
 
     @allure.step("Click on home link")

@@ -11,9 +11,9 @@ class Table(BaseComponent):
         self.table = table
 
     @property
-    def header(self)->TableHeader:
+    def header(self) -> TableHeader:
         return TableHeader(self.page, self.table)
 
     @property
-    def body(self)->TableBody:
+    def body(self) -> TableBody:
         return TableBody(self.page, self.table)

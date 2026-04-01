@@ -1,5 +1,6 @@
 from httpx import Request, RequestNotRead
 
+
 def make_curl_from_request(request: Request) -> str:
     """
     Генерирует команду cURL из HTTP-запроса httpx.

@@ -8,14 +8,17 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class HTTPClientConfig(BaseModel):
     url: HttpUrl
     timeout: float
+
     @property
     def client_url(self) -> str:
         return str(self.url)
+
 
 class Browser(StrEnum):
     CHROME = "chromium"
     FIREFOX = "firefox"
     WEBKIT = "webkit"
+
 
 class User(BaseModel):
     email: EmailStr
@@ -23,8 +26,10 @@ class User(BaseModel):
     username: str
     role: str
 
+
 class TestUser(User):
     role: str = "user"
+
 
 class TestAdmin(TestUser):
     role: str = "admin"
@@ -33,10 +38,9 @@ class TestAdmin(TestUser):
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         extra="allow",
-
         env_file=".env",
         env_file_encoding="utf-8",
-        env_nested_delimiter="."
+        env_nested_delimiter=".",
     )
     app_url: HttpUrl
     headless: bool
@@ -66,5 +70,6 @@ class Settings(BaseSettings):
 
     def get_base_url(self) -> str:
         return f"{self.app_url}"
+
 
 settings = Settings.initialize_settings()

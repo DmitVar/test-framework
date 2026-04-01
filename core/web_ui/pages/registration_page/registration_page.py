@@ -14,63 +14,47 @@ class RegistrationPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.page_title = Text(
-            page,
-            name="Title",
-            locator="[data-qa='register-title']"
-        )
+        self.page_title = Text(page, name="Title", locator="[data-qa='register-title']")
 
         self.user_name_input = Input(
-            page,
-            name="User Name",
-            locator="[data-qa='register-username-input']"
+            page, name="User Name", locator="[data-qa='register-username-input']"
         )
 
         self.email_input = Input(
-            page,
-            name="Email",
-            locator="[data-qa='register-email-input']"
+            page, name="Email", locator="[data-qa='register-email-input']"
         )
 
         self.password_input = Input(
-            page,
-            name="Password",
-            locator="[data-qa='register-password-input']"
+            page, name="Password", locator="[data-qa='register-password-input']"
         )
 
         self.password_confirm_input = Input(
             page,
             name="Password Confirm",
-            locator="[data-qa='register-confirm-password-input']"
+            locator="[data-qa='register-confirm-password-input']",
         )
 
         self.registration_button = Button(
-            page,
-            name="Register",
-            locator="[data-qa='register-submit-button']"
+            page, name="Register", locator="[data-qa='register-submit-button']"
         )
 
         self.login_page_link = Link(
-            page,
-            name="Login Page Link",
-            locator="main a[href='/login']"
+            page, name="Login Page Link", locator="main a[href='/login']"
         )
 
         self.email_alert = Text(
-            page,
-            name="Email Alert",
-            locator="p:text('Неверный формат email')"
+            page, name="Email Alert", locator="p:text('Неверный формат email')"
         )
 
         self.confirm_password_alert = Text(
-            page,
-            name="Confirm Password Alert",
-            locator="p:text('Пароли не совпадают')"
+            page, name="Confirm Password Alert", locator="p:text('Пароли не совпадают')"
         )
 
         self.header = Header(page)
 
-    def registration_new_user(self, user_name: str, email: str, password: str, confirm_password: str) -> None:
+    def registration_new_user(
+        self, user_name: str, email: str, password: str, confirm_password: str
+    ) -> None:
         self.user_name_input.fill(user_name)
         self.user_name_input.check_have_value(user_name)
         self.email_input.fill(email)
@@ -80,5 +64,3 @@ class RegistrationPage(BasePage):
         self.password_confirm_input.fill(confirm_password)
         self.password_confirm_input.check_have_value(confirm_password)
         self.registration_button.click()
-
-

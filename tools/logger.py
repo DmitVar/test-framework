@@ -8,7 +8,9 @@ def get_logger(name: str) -> logging.Logger:
     if not logger.handlers:
         handler = logging.StreamHandler()
         handler.setLevel(logging.DEBUG)
-        formatter = logging.Formatter("\033[97m%(asctime)s | %(name)s | %(levelname)s | %(message)s\033[0m")
+        formatter = logging.Formatter(
+            "\033[97m%(asctime)s | %(name)s | %(levelname)s | %(message)s\033[0m"
+        )
 
         handler.setFormatter(formatter)
         logger.addHandler(handler)

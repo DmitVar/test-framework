@@ -1,5 +1,6 @@
-import allure
 from typing import Any
+
+import allure
 from jsonschema import validate
 from jsonschema.validators import Draft202012Validator
 

@@ -163,7 +163,7 @@ class TestUsersApi:
         self, create_user, delete_user, new_password, expected_cod
     ):
         try:
-            user, user_cred = create_user
+            user, _ = create_user
             client = get_users_client(user)
             current_user_creds_response = client.get_current_user()
             user_creds = current_user_creds_response.json()
@@ -178,7 +178,7 @@ class TestUsersApi:
                     response.status_code, HTTPStatus.UNPROCESSABLE_ENTITY
                 )
         finally:
-            delete_user.append(user_cred['email'])
+            delete_user.append(user.email)
 
     @allure.title("Test endpoint get current user tasks")
     def test_get_current_user_tasks(self):
@@ -193,7 +193,7 @@ class TestUsersApi:
     @allure.title("Test endpoint update user avatar")
     def test_update_user_avatar(self, create_user, delete_user):
         try:
-            user, user_cred = create_user
+            user, _ = create_user
             client = get_users_client(user)
             response_current_user = client.get_current_user()
             all_user_creds = response_current_user.json()
@@ -203,7 +203,7 @@ class TestUsersApi:
             )
             assert_status_code(response.status_code, HTTPStatus.OK)
         finally:
-            delete_user.append(user_cred['email'])
+            delete_user.append(user.email)
 
     @allure.title("Test endpoint get user avatar")
     def test_get_user_avatar(self):

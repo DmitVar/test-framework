@@ -10,7 +10,7 @@ class Text(BaseElement):
         return "text"
 
     def get_text(
-        self, nth: int = 0, base_locator: Locator | None = None, **kwargs
+        self, nth: int = 0, base_locator: Locator | None = None
     ) -> str:
         with allure.step(f"Get {self.type_of} with name {self.name}"):
             if base_locator:

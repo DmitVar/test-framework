@@ -14,6 +14,6 @@ class TestBoardsPage:
         boards_page.go()
         boards_page.go_to_board(board_title)
         url = boards_page.page.url
-        id = url.split("/")[-1]
-        board_page = BoardPage(boards_page.page, id)
+        board_id = url.split("/")[-1]
+        board_page = BoardPage(boards_page.page, board_id)
         board_page.go()

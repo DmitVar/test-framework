@@ -1,8 +1,9 @@
-import allure
-import pytest
-from allure_commons.types import Severity
-from faker import Faker
 from http import HTTPStatus
+
+import allure
+from allure_commons.types import Severity
+import pytest
+from faker import Faker
 
 from config import settings
 from core.api.clients.authentication.authentication_client import (

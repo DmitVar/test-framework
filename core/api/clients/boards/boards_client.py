@@ -36,7 +36,7 @@ class BoardsClient(APIClient):
     def create_board(self, request: RequestCreateBoardSchema) -> Response:
         return self.post(
             url=f"{settings.API_URL}/boards/",
-            request=request,
+            json=request.model_dump(by_alias=True),
         )
 
     def get_board_by_id(self, board_id: int) -> Response:
@@ -49,7 +49,7 @@ class BoardsClient(APIClient):
     ) -> Response:
         return self.put(
             url=f"{settings.API_URL}/boards/{board_id}",
-            request=request,
+            json=request.model_dump(by_alias=True),
         )
 
     def delete_board_by_id(self, board_id: int) -> Response:

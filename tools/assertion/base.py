@@ -1,6 +1,6 @@
-import allure
 from typing import Any, Sized
 
+import allure
 from tools.logger import get_logger
 
 logger = get_logger("Base_Assertion")

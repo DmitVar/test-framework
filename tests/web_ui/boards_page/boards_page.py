@@ -1,5 +1,6 @@
 from playwright.sync_api import Page
 
+from core.web_ui.pages.board_page.board_page import BoardPage
 from core.web_ui.pages.boards_page.boards_page import BoardsPage
 
 
@@ -13,4 +14,6 @@ class TestBoardsPage:
         boards_page.go()
         boards_page.go_to_board(board_title)
         url = boards_page.page.url
-        t = 22
+        id = url.split("/")[-1]
+        board_page = BoardPage(boards_page.page, id)
+        board_page.go()

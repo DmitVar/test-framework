@@ -30,6 +30,4 @@ def log_response_event_hook(response: Response):
     :param response: Объект ответа HTTPX.
     """
     code = response.status_code
-    logger.info(
-        f"Got response {code} {response.reason_phrase} from {response.url}"
-    )
+    logger.info(f"Got response {code} {response.reason_phrase} from {response.url}")

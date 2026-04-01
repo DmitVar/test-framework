@@ -31,9 +31,7 @@ class BaseElement:
         else:
             base = self.page
         locator = self.locator.format(**kwargs)
-        with allure.step(
-            f"Get locator: {self.locator}"
-        ):
+        with allure.step(f"Get locator: {self.locator}"):
             return base.locator(locator).nth(nth)
 
     def get_raw_locator(self, nth: int = 0, **kwargs) -> str:

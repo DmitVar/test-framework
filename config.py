@@ -31,7 +31,7 @@ class TestUser(User):
     role: str = "user"
 
 
-class TestAdmin(TestUser):
+class TestAdmin(User):
     role: str = "admin"
 
 

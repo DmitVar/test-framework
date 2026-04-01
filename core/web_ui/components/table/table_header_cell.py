@@ -3,6 +3,5 @@ from core.web_ui.elements.text import Text
 
 
 class TableHeaderCell(TableCell):
-    @property
-    def cell(self) -> Text:
-        return Text(self.page, name="Table Header Cell", locator="th")
+    def cell(self, name="Table Header Cell") -> Text:
+        return Text(self.page, name=name, locator="th")

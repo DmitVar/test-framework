@@ -1,5 +1,4 @@
 import allure
-from playwright.sync_api import Locator
 
 from core.web_ui.elements.base_element import BaseElement
 

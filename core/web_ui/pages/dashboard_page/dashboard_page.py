@@ -59,6 +59,7 @@ class DashboardPage(BasePage):
             board_title = board.locator("h3").text_content()
             if board_title == board_name:
                 return board
+        return None
 
     def is_board_public(self, board: Locator) -> bool:
         return board.locator(".pill--public").count() > 0

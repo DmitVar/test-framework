@@ -1,3 +1,4 @@
+# pylint: disable=too-few-public-methods
 import allure_commons
 import pytest
 
@@ -15,7 +16,7 @@ pytest_plugins = [
 class AllureLogger:
     @allure_commons.hookimpl
     def start_step(self, title):
-        logger.info(f" {title}")
+        logger.info(f"{title}")
 
 
 allure_commons.plugin_manager.register(AllureLogger())

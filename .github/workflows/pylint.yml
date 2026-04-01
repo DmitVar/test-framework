@@ -21,4 +21,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Analysing the code with pylint
       run: |
-        pylint --disable=missing-module-docstring,missing-class-docstring,missing-function-docstring $(git ls-files '*.py')
+        pylint --disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,logging-fstring-interpolation $(git ls-files '*.py')

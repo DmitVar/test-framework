@@ -23,5 +23,5 @@ class BasePage:
             expect(self.page).to_have_url(expected_url)
 
     def wait_page_loaded(self, event_state="load", timeout=10000):
-        with allure.step(f"Wait page loaded"):
+        with allure.step("Wait page loaded"):
             self.page.wait_for_load_state(state=event_state, timeout=timeout)

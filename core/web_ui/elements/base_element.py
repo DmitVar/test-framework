@@ -32,7 +32,7 @@ class BaseElement:
             base = self.page
         locator = self.locator.format(**kwargs)
         with allure.step(
-            f"Get locator: {self.locator} of element with name: {self.name} at index {nth}"
+            f"Get locator: {self.locator}"
         ):
             return base.locator(locator).nth(nth)
 

@@ -29,6 +29,7 @@ def log_response_event_hook(response: Response):
     Логирует информацию о полученном HTTP-ответе.
     :param response: Объект ответа HTTPX.
     """
+    code = response.status_code
     logger.info(
-        f"Got response {response.status_code} {response.reason_phrase} from {response.url}"
+        f"Got response {code} {response.reason_phrase} from {response.url}"
     )

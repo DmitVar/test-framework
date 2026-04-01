@@ -46,7 +46,6 @@ class TableBody(BaseComponent):
         for row in rows:
             cells = row.locator("td").all()
             for cell in cells:
-                text = cell.inner_text()
                 if cell.inner_text() == cell_text:
                     return row
         return None

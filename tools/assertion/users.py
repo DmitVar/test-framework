@@ -1,7 +1,7 @@
 import allure
 
 from core.api.clients.users.users_schemas import UserSchema, RequestUpdateUserSchema
-from tools.assertion.base import assert_equal, assert_is_true
+from tools.assertion.base import assert_equal
 from tools.logger import get_logger
 
 logger = get_logger("USERS_ASSERTIONS")

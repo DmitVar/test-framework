@@ -5,7 +5,6 @@ from _pytest.fixtures import SubRequest
 from playwright.sync_api import Page, Playwright
 
 from config import settings
-from fixtures.api.api_fixtures import get_token_user_session
 from tools.playwright.init_page import init_page
 
 

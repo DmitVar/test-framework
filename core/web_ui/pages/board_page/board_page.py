@@ -13,7 +13,7 @@ class BoardPage(BasePage):
 
     def __init__(self, page: Page, board_id: str):
         super().__init__(page)
-        self.base_url = self.base_url + board_id
+        self.base_url = f"{self.base_url}{board_id}"
 
         self.board_title = Text(
             page,
@@ -63,3 +63,6 @@ class BoardPage(BasePage):
 
         self.header = Header(page)
         self.sidebar = Sidebar(page)
+
+    def check_title_has_text(self, title: str):
+        self.board_title.check_have_text(title)

@@ -124,4 +124,3 @@ def get_id_all_boards():
     ids = [board["id"] for board in response_data["boards"]]
     ids.sort()
     return ids
-

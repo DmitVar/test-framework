@@ -12,7 +12,7 @@ def create_allure_environment_file():
 
     with open(
         settings.allure_results_dir.joinpath("environment.properties"),
-            "w+",
+        "w+",
         encoding="utf-8",
     ) as file:
         file.write(properties)

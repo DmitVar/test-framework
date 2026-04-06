@@ -10,12 +10,16 @@ class AllureEpics(StrEnum):
 class AllureFeature(StrEnum):
     AUTHENTICATION = "Authentication"
     USERS = "Users"
+    BOARDS = "Boards"
 
 
 class AllureStory(StrEnum):
     REGISTRATION = "Registration"
     AUTHORIZATION = "Authorization"
     ADMINISTRATION = "Administration"
+    TASK_MANAGEMENT = "Task Management"
+    BOARD_OPERATIONS = "Board Operations"
+    TASK_LIFECYCLE = "Task Lifecycle"
 
 
 class AllureTags(StrEnum):
@@ -24,3 +28,5 @@ class AllureTags(StrEnum):
     REGISTRATION = "REGISTRATION"
     CREATE_USER = "CREATE_USER"
     ADMINISTRATION = "Administration"
+    CREATE_BOARD = "CREATE_BOARD"
+    BOARD = "BOARD"

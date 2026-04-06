@@ -1,13 +1,13 @@
 import allure
 from httpx import Response
 
-from core.api.clients.api_client import APIClient
-from core.api.clients.public_http_builder import get_public_http_client
-from core.api.clients.authentication.authentication_schema import (
-    LoginResponseSchema,
-    LoginRequestSchema,
-)
 from config import settings
+from core.api.clients.api_client import APIClient
+from core.api.clients.authentication.authentication_schema import (
+    LoginRequestSchema,
+    LoginResponseSchema,
+)
+from core.api.clients.public_http_builder import get_public_http_client
 
 
 class AuthenticationClient(APIClient):

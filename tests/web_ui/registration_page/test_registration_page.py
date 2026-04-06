@@ -6,7 +6,7 @@ from playwright.sync_api import Page
 
 from core.web_ui.pages.dashboard_page.dashboard_page import DashboardPage
 from core.web_ui.pages.registration_page.registration_page import RegistrationPage
-from tools.allure.allure_enum import AllureTags, AllureStory, AllureFeature, AllureEpics
+from tools.allure.allure_enum import AllureEpics, AllureFeature, AllureStory, AllureTags
 
 fake = Faker()
 

@@ -9,17 +9,17 @@ from pydantic import TypeAdapter
 from core.api.clients.errors_schema import InternalErrorResponseSchema
 from core.api.clients.users.users_client import get_users_client
 from core.api.clients.users.users_schemas import (
-    UserSchema,
-    RequestUpdateUserSchema,
-    RequestUpdateUserPasswordSchema,
-    UserTaskSchema,
     RequestUpdateUserAvatarSchema,
+    RequestUpdateUserPasswordSchema,
+    RequestUpdateUserSchema,
     ResponseGetUserAvatarSchema,
+    UserSchema,
+    UserTaskSchema,
 )
 from tools.allure.allure_enum import AllureEpics, AllureFeature, AllureStory, AllureTags
 from tools.assertion.base import assert_status_code
 from tools.assertion.schema import validate_json_schema
-from tools.assertion.users import assert_users_response, assert_update_user_response
+from tools.assertion.users import assert_update_user_response, assert_users_response
 
 
 @allure.epic(AllureEpics.TMS)

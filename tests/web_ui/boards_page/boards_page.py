@@ -1,6 +1,5 @@
-import pytest
 import allure
-
+import pytest
 from allure_commons.types import Severity
 from playwright.sync_api import Page
 

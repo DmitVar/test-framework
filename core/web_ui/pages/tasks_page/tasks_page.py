@@ -3,8 +3,8 @@ from playwright.sync_api import Page
 from core.web_ui.components.header import Header
 from core.web_ui.components.sidebar import Sidebar
 from core.web_ui.components.table.table import Table
-from core.web_ui.elements.select import Select
 from core.web_ui.elements.input import Input
+from core.web_ui.elements.select import Select
 from core.web_ui.pages.base_page import BasePage
 
 

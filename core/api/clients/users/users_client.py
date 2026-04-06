@@ -4,9 +4,9 @@ from config import settings
 from core.api.clients.api_client import APIClient
 from core.api.clients.private_http_builder import get_private_http_client
 from core.api.clients.users.users_schemas import (
-    RequestUpdateUserSchema,
     RequestUpdateUserAvatarSchema,
     RequestUpdateUserPasswordSchema,
+    RequestUpdateUserSchema,
 )
 
 

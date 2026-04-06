@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from playwright.sync_api import Locator, Page
+
 from core.web_ui.components.base_component import BaseComponent
 from core.web_ui.elements.text import Text
 

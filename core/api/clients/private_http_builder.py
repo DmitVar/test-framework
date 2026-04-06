@@ -1,6 +1,7 @@
 from httpx import Client
 from pydantic import BaseModel, EmailStr
 
+from config import settings
 from core.api.clients.authentication.authentication_client import (
     get_authentication_client,
 )
@@ -10,7 +11,6 @@ from core.api.clients.event_hooks import (
     log_request_event_hook,
     log_response_event_hook,
 )
-from config import settings
 
 
 class AuthenticationUserSchemas(BaseModel):

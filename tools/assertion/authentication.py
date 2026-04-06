@@ -1,4 +1,5 @@
 import allure
+
 from core.api.clients.authentication.registration_schema import CreateUserResponseSchema
 from tools.assertion.base import assert_equal, assert_is_true
 from tools.logger import get_logger

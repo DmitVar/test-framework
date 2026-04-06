@@ -1,8 +1,8 @@
 from http import HTTPStatus
 
 import allure
-from allure_commons.types import Severity
 import pytest
+from allure_commons.types import Severity
 from faker import Faker
 
 from config import settings

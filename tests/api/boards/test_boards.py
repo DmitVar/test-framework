@@ -15,7 +15,7 @@ from core.api.clients.boards.boards_schems import (
     RequestUpdateBoardSchema,
 )
 from tools.allure.allure_enum import AllureEpics, AllureFeature, AllureStory, AllureTags
-from tools.assertion.base import assert_status_code, assert_equal, assert_is_true
+from tools.assertion.base import assert_equal, assert_is_true, assert_status_code
 from tools.assertion.schema import validate_json_schema
 
 fake = Faker()

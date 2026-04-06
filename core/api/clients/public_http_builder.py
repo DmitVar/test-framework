@@ -1,11 +1,11 @@
 from httpx import Client
 
+from config import settings
 from core.api.clients.event_hooks import (
     curl_event_hook,
     log_request_event_hook,
     log_response_event_hook,
 )
-from config import settings
 
 
 def get_public_http_client() -> Client:

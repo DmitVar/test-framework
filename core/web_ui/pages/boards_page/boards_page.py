@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, Locator
+from playwright.sync_api import Locator, Page
 
 from core.web_ui.components.sidebar import Sidebar
 from core.web_ui.components.table.table import Table

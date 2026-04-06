@@ -1,6 +1,6 @@
 from typing import Any
 
-from playwright.sync_api import Page, Locator
+from playwright.sync_api import Locator, Page
 
 from core.web_ui.components.delete_user_modal import DeleteUserModal
 from core.web_ui.components.edit_user_modal import EditUserModal

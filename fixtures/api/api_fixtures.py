@@ -10,7 +10,7 @@ from core.api.clients.authentication.registration_schema import CreateUserReques
 from core.api.clients.authentication.registration_user_client import (
     get_registration_user_client,
 )
-from core.api.clients.boards.boards_client import get_boards_client, BoardsClient
+from core.api.clients.boards.boards_client import BoardsClient, get_boards_client
 from core.api.clients.boards.boards_schems import RequestCreateBoardSchema
 from core.api.clients.public_http_builder import get_public_http_client
 

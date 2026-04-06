@@ -1,16 +1,23 @@
 import allure
 import pytest
+from allure_commons.types import Severity
 from faker import Faker
 from playwright.sync_api import Page
 
 from config import settings
 from core.web_ui.pages.boards_page.boards_page import BoardsPage
 from core.web_ui.pages.dashboard_page.dashboard_page import DashboardPage
+from tools.allure.allure_enum import AllureEpics, AllureFeature, AllureStory, AllureTags
 
 faker = Faker()
 
-
+@allure.epic(AllureEpics.TMS)
+@allure.feature(AllureFeature.DASHBOARDS)
+@allure.story(AllureStory.BOARDS_MANAGEMENT)
+@allure.tag(AllureTags.BOARDS_STATISTICS)
+@allure.severity(Severity.MINOR)
 @pytest.mark.ui
+@pytest.mark.regression
 class TestDashboardPage:
     @allure.title("Check user name on dashboard page")
     def test_check_user_name_on_dashboard_page(

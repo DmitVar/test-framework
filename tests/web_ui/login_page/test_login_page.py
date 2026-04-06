@@ -6,10 +6,7 @@ from playwright.sync_api import Page
 from config import settings
 from conftest import AllureLogger
 from core.web_ui.pages.login_page.login_page import LoginPage
-from tools.allure.allure_enum import AllureEpics
-from tools.allure.allure_enum import AllureFeature
-from tools.allure.allure_enum import AllureStory
-from tools.allure.allure_enum import AllureTags
+from tools.allure.allure_enum import AllureEpics, AllureFeature, AllureStory, AllureTags
 
 logger = AllureLogger()
 

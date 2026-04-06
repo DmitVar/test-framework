@@ -1,9 +1,8 @@
 from typing import Any
 
 import allure
-from httpx import Client, QueryParams, Response, URL
-
-from httpx._types import RequestData, RequestFiles, RequestContent
+from httpx import URL, Client, QueryParams, Response
+from httpx._types import RequestContent, RequestData, RequestFiles
 
 
 class APIClient:

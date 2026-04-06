@@ -10,6 +10,9 @@ from core.api.clients.authentication.registration_schema import CreateUserReques
 from core.api.clients.authentication.registration_user_client import (
     get_registration_user_client,
 )
+from core.api.clients.boards.boards_client import get_boards_client, BoardsClient
+from core.api.clients.boards.boards_schems import RequestCreateBoardSchema
+from core.api.clients.public_http_builder import get_public_http_client
 
 faker = Faker()
 
@@ -91,3 +94,34 @@ def create_user():
     client.register_user(request=request)
     user = LoginRequestSchema(email=email, password=password)
     return (user, {"name": user_name, "email": email, "password": password})
+
+
+@pytest.fixture
+def get_id_public_boards():
+    client = BoardsClient(client=get_public_http_client())
+    response = client.get_all_public_boards()
+    response_data = response.json()
+    return [board["id"] for board in response_data]
+
+
+@pytest.fixture
+def create_board():
+    board_title = faker.text(max_nb_chars=20)
+    description = faker.text(max_nb_chars=100)
+    is_public = True
+    client = get_boards_client()
+    request = RequestCreateBoardSchema(
+        title=board_title, description=description, public=is_public
+    )
+    response = client.create_board(request)
+    return response.json()
+
+@pytest.fixture
+def get_id_all_boards():
+    client = BoardsClient(client=get_boards_client())
+    response = client.get(f"{settings.http_client.url}stats/admin/all-boards")
+    response_data = response.json()
+    ids = [board["id"] for board in response_data["boards"]]
+    ids.sort()
+    return ids
+

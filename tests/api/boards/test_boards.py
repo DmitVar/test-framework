@@ -51,7 +51,7 @@ class TestBoards:
     @allure.title("Get public board by id")
     def test_get_random_public_boards_by_id(self, get_id_public_boards):
         public_board_ids = get_id_public_boards
-        board_index = random.randint(0, len(public_board_ids))
+        board_index = random.randint(0, len(public_board_ids) - 1)
         board_id = public_board_ids[board_index]
         client = get_boards_client()
         response = client.get_public_board_by_id(board_id=board_id)
